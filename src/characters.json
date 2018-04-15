@@ -1,0 +1,74 @@
+[
+	{
+		"id": 1,
+		"name": "Aragorn",
+		"image": "imgs/aragorn.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 2,
+		"name": "Legolas",
+		"image": "imgs/legolas.png",
+		"beenClicked": false
+	},
+	{
+		"id": 3,
+		"name": "Frodo",
+		"image": "imgs/frodo.png",
+		"beenClicked": false
+	},
+	{
+		"id": 4,
+		"name": "Sam",
+		"image": "imgs/sam.png",
+		"beenClicked": false
+	},
+	{
+		"id": 5,
+		"name": "Pippin",
+		"image": "imgs/pippin.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 6,
+		"name": "Merry",
+		"image": "imgs/merry.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 7,
+		"name": "Gimli",
+		"image": "imgs/gimli.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 8,
+		"name": "Boromir",
+		"image": "imgs/boromir.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 9,
+		"name": "Gandalf",
+		"image": "imgs/gandalf.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 10,
+		"name": "Sauron",
+		"image": "imgs/sauron.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 11,
+		"name": "Bilbo",
+		"image": "imgs/bilbo.jpg",
+		"beenClicked": false
+	},
+	{
+		"id": 12,
+		"name": "Treebeard",
+		"image": "imgs/treebeard.jpeg",
+		"beenClicked": false
+	}
+]

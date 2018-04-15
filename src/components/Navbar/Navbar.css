@@ -1,0 +1,28 @@
+body{
+	font-family: 'Spectral', serif;
+}
+
+.navbar li{
+	display:inline-block;
+	width: 33%;
+	font-size:24px;
+	text-align:center;
+	padding: 24px 0px;
+	color:white;
+}
+
+/*Took the box-shadow from the homework example*/
+.navbar{
+	background-color:#228B22;
+	position:fixed;
+	width:100%;
+	box-shadow:0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+	z-index:500;
+}
+
+.brand a{
+	color:white;
+}
+.brand a:hover{
+    text-decoration: none;
+}
