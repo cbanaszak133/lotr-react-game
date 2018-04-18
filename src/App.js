@@ -8,7 +8,7 @@ import './App.css';
 class App extends Component {
 
   state = {
-    characters: characters,
+    characterArray: characters,
     score: 0,
     topScore: 0,
     message: "Click an image to begin!"
@@ -35,52 +35,53 @@ class App extends Component {
   }
 
   clickImg = id => {
-    const allCharacters = this.state.characters.filter(c => c.id !== id);
 
-    const clickedCharacter = this.state.characters.filter(c => c.id === id);
+  	//Retrieve the clicked character
+    const clickedCharacter = this.state.characterArray.filter(c => c.id === id);
 
-
+  	//If the character has not been clicked, change its beenClicked value to true, else restart the game
     if(!clickedCharacter[0].beenClicked){
-      const changedCharacter = clickedCharacter.map(c => {
-         var nChar = {};
-         nChar.id = c.id;
-         nChar.name = c.name;
-         nChar.image = c.image;
-         nChar.beenClicked = true;
-         return nChar;
+      const updatedCharacters = this.state.characterArray.map(c => {
+         if(c.id === id){
+         	c.beenClicked = true;
+         	return c;
+         }
+         else{
+         	return c;
+         }
       });
 
-      allCharacters.push(changedCharacter[0]);
       this.setState({
-        characters: this.shuffle(allCharacters), 
+        characterArray: this.shuffle(updatedCharacters), 
         score: this.state.score + 1,
         message: "Nice one! Keep going!"
       });
-    }
+    }  
     else{
-      const charactersRefreshed = this.state.characters.map(c => {
-         var nChar = {};
-         nChar.id = c.id;
-         nChar.name = c.name;
-         nChar.image = c.image;
-         nChar.beenClicked = false;
-         return nChar;
-      });
+		const charactersRefreshed = this.state.characterArray.map(c => {
+			let refChar = {}
+			refChar.id = c.id;
+			refChar.name = c.name;
+			refChar.image = c.image;
+			refChar.beenClicked = false;
+			return refChar;
+		});
 
-      let newTopScore = 0;
-      if(this.state.score > this.state.topScore){
-        newTopScore = this.state.score;
-      }
-      else{
-        newTopScore = this.state.topScore;
-      }
+		let newTopScore = 0;
+		if(this.state.score > this.state.topScore){
+			newTopScore = this.state.score;
+		}
+		else{
+			newTopScore = this.state.topScore;
+		}
 
-      this.setState({
-        characters: this.shuffle(charactersRefreshed),
-        topScore: newTopScore, 
-        score: 0,
-        message: "Wrong! Click an image to start again!"
-      });
+		this.setState({
+			characterArray: this.shuffle(charactersRefreshed),
+			topScore: newTopScore, 
+			score: 0,
+			message: "Wrong! Click again to refresh!"
+		});
+
     }
   }
 
@@ -92,7 +93,7 @@ class App extends Component {
         <Navbar message={this.state.message} score={this.state.score} topScore={this.state.topScore}/>
         <Header />
         <div className="container">
-            {this.state.characters.map(character => (
+            {this.state.characterArray.map(character => (
                 <CharacterCard 
                     img={character.image}
                     id={character.id}
