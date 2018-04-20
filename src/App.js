@@ -37,52 +37,73 @@ class App extends Component {
   clickImg = id => {
 
   	//Retrieve the clicked character
-    const clickedCharacter = this.state.characterArray.filter(c => c.id === id);
+      const clickedCharacter = this.state.characterArray.filter(c => c.id === id);
 
-  	//If the character has not been clicked, change its beenClicked value to true, else restart the game
-    if(!clickedCharacter[0].beenClicked){
-      const updatedCharacters = this.state.characterArray.map(c => {
-         if(c.id === id){
-         	c.beenClicked = true;
-         	return c;
-         }
-         else{
-         	return c;
-         }
-      });
+    	//If the character has not been clicked, change its beenClicked value to true, else restart the game
+      if(!clickedCharacter[0].beenClicked){
+        //If the user clicks all the cards once, they win!
+        if(this.state.score === 11){
+          this.resetGame();
+        }
+        else{
 
-      this.setState({
-        characterArray: this.shuffle(updatedCharacters), 
-        score: this.state.score + 1,
-        message: "Nice one! Keep going!"
-      });
+          const updatedCharacters = this.state.characterArray.map(c => {
+             if(c.id === id){
+             	c.beenClicked = true;
+             	return c;
+             }
+             else{
+             	return c;
+             }
+          });
+
+          this.setState({
+            characterArray: this.shuffle(updatedCharacters), 
+            score: this.state.score + 1,
+            message: "Nice one! Keep going!"
+          });
+      }  
     }  
     else{
-		const charactersRefreshed = this.state.characterArray.map(c => {
-			let refChar = {}
-			refChar.id = c.id;
-			refChar.name = c.name;
-			refChar.image = c.image;
-			refChar.beenClicked = false;
-			return refChar;
-		});
+      this.resetGame();
 
-		let newTopScore = 0;
-		if(this.state.score > this.state.topScore){
-			newTopScore = this.state.score;
-		}
-		else{
-			newTopScore = this.state.topScore;
-		}
-
-		this.setState({
-			characterArray: this.shuffle(charactersRefreshed),
-			topScore: newTopScore, 
-			score: 0,
-			message: "Wrong! Click again to refresh!"
-		});
 
     }
+  }
+
+  resetGame = () => {
+    const charactersRefreshed = this.state.characterArray.map(c => {
+      return {...c, beenClicked: false };
+    });
+
+    if(this.state.score === 11){
+      this.setState({
+        characterArray: this.shuffle(charactersRefreshed),
+        topScore: 12, 
+        score: 0,
+        message: "You won! Click to play again!"
+      });
+
+    }
+    else{
+      let newTopScore = 0;
+
+      if(this.state.score > this.state.topScore){
+        newTopScore = this.state.score;
+      }
+      else{
+        newTopScore = this.state.topScore;
+      }
+
+      this.setState({
+        characterArray: this.shuffle(charactersRefreshed),
+        topScore: newTopScore, 
+        score: 0,
+        message: "Wrong! Click again to refresh!"
+      });
+
+    }
+
   }
 
 
